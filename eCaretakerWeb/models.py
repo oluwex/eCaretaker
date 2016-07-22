@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.core import validators
 
-# Create your models her
+# Create your models here
 
 class Users(AbstractBaseUser):
     first_name = models.CharField('First Name', max_length=30, blank=True)
@@ -43,8 +43,18 @@ class Users(AbstractBaseUser):
     joined = models.DateTimeField(auto_now_add=True, auto_now=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    role = models.CharField(
+        'Role',
+        choices=[
+            ('tenant', 'Tenant'),
+            ('landlord', 'Landlord')
+        ]
+    )
 
     USERNAME_FIELD = "email"
+
+    def __str__(self):
+        return self.email
 
 
 class LGA(models.Model):
