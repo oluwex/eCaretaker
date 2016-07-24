@@ -28,7 +28,7 @@ class Users(AbstractBaseUser):
              'Phone Number must only consist of numbers and must be eleven or greater in length'
          )
          ], unique=True, error_messages={
-            'unique':'A user with that phone number already exists'
+            'unique': 'A user with that phone number already exists'
         }
     )
     gender = models.CharField(
@@ -55,6 +55,17 @@ class Users(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+
+class Street(models.Model):
+    name = models.CharField(
+        'Street Name',
+        max_length=30,
+        blank=True
+
+    )
+
+    local_government = models.ForeignKey('LGA', models.CASCADE, verbose_name='Local Government Area')
 
 
 class LGA(models.Model):
