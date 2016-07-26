@@ -60,12 +60,28 @@ class Users(AbstractBaseUser):
 class Street(models.Model):
     name = models.CharField(
         'Street Name',
-        max_length=30,
+        max_length=50,
         blank=True
 
     )
 
+    city = models.ForeignKey('City', models.CASCADE, verbose_name="City")
+
     local_government = models.ForeignKey('LGA', models.CASCADE, verbose_name='Local Government Area')
+
+class City(models.Model):
+    name = models.CharField(
+        'City',
+        max_length=30,
+        blank=True,
+    )
+
+    local_government = models.ForeignKey('LGA', models.CASCADE, verbose_name='Local Government Area')
+
+    state = models.ForeignKey('State', models.CASCADE, verbose_name='State')
+
+    def __str__(self):
+        return self.name
 
 
 class LGA(models.Model):
