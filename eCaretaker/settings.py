@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eCaretakerWeb',
+    'eCaretakerLocations',
 ]
 
 MIDDLEWARE_CLASSES = [
