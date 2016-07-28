@@ -56,3 +56,6 @@ class Users(AbstractBaseUser):
     def __str__(self):
         return self.email
 
+class UserRoles(models.Model):
+    userid = models.ForeignKey('Users', models.CASCADE)
+    roleid = models.ForeignKey('Roles', models.CASCADE)
