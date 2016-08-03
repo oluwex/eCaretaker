@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, User
 from django.core import validators
 from django.utils.translation import ugettext_lazy as _
 
@@ -15,11 +15,11 @@ class Users(AbstractBaseUser):
     ROLE_TENANT = 'tenant'
     ROLE_CHOICES = [(ROLE_LANDLORD, _('Landlord')), (ROLE_TENANT, _('Tenant'))]
 
-    first_name = models.CharField('First Name', max_length=30, blank=True)
-    middle_name = models.CharField('Middle Name', max_length=30,blank=True)
-    last_name = models.CharField('Last Name', max_length=30, blank=True)
+    first_name = models.CharField(_('First Name'), max_length=30, blank=True)
+    middle_name = models.CharField(_('Middle Name'), max_length=30,blank=True)
+    last_name = models.CharField(_('Last Name'), max_length=30, blank=True)
     email = models.EmailField(
-        'email address',
+        _('email address'),
         help_text='Enter a valid email address',
         unique=True,db_index=True,
         validators=[
@@ -30,9 +30,9 @@ class Users(AbstractBaseUser):
         error_messages={
             'unique':'A user with that email address already exist'}
     )
-    address = models.CharField('Address', max_length=80, blank=True)
-    alternate_address = models.CharField('Alternate Address', max_length=80, blank=80)
-    phone_No = models.CharField('Phone Number', max_length=20, blank=True,
+    address = models.CharField(_('Address'), max_length=80, blank=True)
+    alternate_address = models.CharField(_('Alternate Address'), max_length=80, blank=80)
+    phone_No = models.CharField(_('Phone Number'), max_length=20, blank=True,
          validators=[validators.RegexValidator(
              r'[\d]{11,}',
              'Phone Number must only consist of numbers and must be eleven or greater in length'
@@ -42,7 +42,7 @@ class Users(AbstractBaseUser):
         }
     )
     gender = models.CharField(
-        'Gender',
+        _('Gender'),
         help_text='Select your gender',
         max_length=1,
         choices=GENDER_CHOICES,
@@ -52,13 +52,16 @@ class Users(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     role = models.CharField(
-        'Role',
+        _('Role'),
         max_length=1,
         help_text='Please select your user role',
         choices=ROLE_CHOICES,
     )
 
     USERNAME_FIELD = "email"
+
+    class Meta:
+        verbose_name_plural = _("users")
 
     def __str__(self):
         return self.email
