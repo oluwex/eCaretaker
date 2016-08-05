@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eCaretakerWeb',
     'eCaretakerLocations',
+    'complaints',
 ]
 
 MIDDLEWARE_CLASSES = [
