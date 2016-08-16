@@ -1,0 +1,12 @@
+{% extends 'base.html '%}
+
+{% block head_title %} Log In - {{ block.super }} {% endblock%}
+
+<h1>Create Post</h1>
+
+{% block content%}
+<form method="post" action="">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login" />
+</form>
+{% endblock %}
