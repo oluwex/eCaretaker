@@ -19,9 +19,9 @@ class House(models.Model):
         blank=True,
     )
 
-    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True, null=True)
 
-    updated_time = models.DateTimeField(auto_now=True, auto_now_add=False)
+    updated_time = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True)
 
     street = models.ForeignKey('Street', models.CASCADE, verbose_name='Street Name')
 
@@ -45,7 +45,9 @@ class Street(models.Model):
         blank=True,
     )
 
-    timestamp = models.DateTimeField()
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True, null=True)
+
+    updated_time = models.DateTimeField(auto_now_add=False, auto_now=False, blank=True, null=True)
 
     city = models.ForeignKey('City', models.CASCADE, verbose_name="City")
 

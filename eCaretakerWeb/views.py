@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import Login
+from .forms import Login, Register
 
 # Create your views here.
 
@@ -18,5 +18,12 @@ def login(request, authentication_form=Login):
     }
     return render(request, template, context)
 
-def register(request):
-    return
+def register(request, authentication_form=Register):
+    form = authentication_form(request.POST or None)
+    if form.is_valid():
+        print("user is registered")
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'registration/register.html', context)

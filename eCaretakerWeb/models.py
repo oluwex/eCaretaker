@@ -15,6 +15,7 @@ class Users(AbstractBaseUser):
     ROLE_TENANT = 'tenant'
     ROLE_CHOICES = [(ROLE_LANDLORD, _('Landlord')), (ROLE_TENANT, _('Tenant'))]
 
+    username = models.CharField(_('Username'), max_length=15, blank=True)
     first_name = models.CharField(_('First Name'), max_length=30, blank=True)
     middle_name = models.CharField(_('Middle Name'), max_length=30,blank=True)
     last_name = models.CharField(_('Last Name'), max_length=30, blank=True)
@@ -30,7 +31,7 @@ class Users(AbstractBaseUser):
         error_messages={
             'unique':'A user with that email address already exist'}
     )
-    address = models.CharField(_('Address'), max_length=80, blank=True)
+    address = models.TextField(_('Address'), max_length=80, blank=True)
     alternate_address = models.CharField(_('Alternate Address'), max_length=80, blank=80)
     phone_No = models.CharField(_('Phone Number'), max_length=20, blank=True,
          validators=[validators.RegexValidator(
@@ -53,12 +54,12 @@ class Users(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     role = models.CharField(
         _('Role'),
-        max_length=1,
+        max_length=8,
         help_text='Please select your user role',
         choices=ROLE_CHOICES,
     )
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
 
     class Meta:
         verbose_name_plural = _("users")
