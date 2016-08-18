@@ -10,10 +10,6 @@ class Login(AuthenticationForm):
         ]
 
 class Register(UserCreationForm):
-    # def __init__(self, request, *args, **kwargs):
-    #     super(Register, self).__init__(*args, **kwargs)
-    #     self.fields['last_name', 'first_name', 'middle_name', 'role'].required = True
-
     class Meta:
         model = Users
         fields = [

@@ -32,7 +32,7 @@ class Users(AbstractBaseUser):
             'unique':'A user with that email address already exist'}
     )
     address = models.TextField(_('Address'), max_length=80, blank=False)
-    alternate_address = models.CharField(_('Alternate Address'), max_length=80, blank=80)
+    alternate_address = models.TextField(_('Alternate Address'), max_length=80, blank=80)
     phone_No = models.CharField(_('Phone Number'), max_length=20, blank=True,
          validators=[validators.RegexValidator(
              r'[\d]{11,}',
