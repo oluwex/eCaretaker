@@ -23,11 +23,12 @@ class Users(AbstractBaseUser):
         _('email address'),
         help_text='Enter a valid email address',
         unique=True,db_index=True,
-        validators=[
-            validators.RegexValidator(
-                r'(^[\w_.+-]+@[\w-]+\.[\w-.]+$)', 'Enter a valid username. This value may contain only '
-                  'letters, numbers and @/./+/-/_ characters.'
-        )],
+        # validators=[
+        #     validators.RegexValidator(
+        #         r'^([\w-\._]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'
+        #         , 'Enter a valid username. This value may contain only '
+        #           'letters, numbers and @/./+/-/_ characters.'
+        # )],
         error_messages={
             'unique':'A user with that email address already exist'}
     )
@@ -35,7 +36,7 @@ class Users(AbstractBaseUser):
     alternate_address = models.TextField(_('Alternate Address'), max_length=80, blank=80)
     phone_No = models.CharField(_('Phone Number'), max_length=20, blank=True,
          validators=[validators.RegexValidator(
-             r'[\d]{11,}',
+             r'(^[\d]{11,20})',
              'Phone Number must only consist of numbers and must be eleven or greater in length'
          )
          ], unique=True, error_messages={
@@ -45,7 +46,7 @@ class Users(AbstractBaseUser):
     gender = models.CharField(
         _('Gender'),
         help_text='Select your gender',
-        max_length=1,
+        max_length=6,
         choices=GENDER_CHOICES,
     )
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)

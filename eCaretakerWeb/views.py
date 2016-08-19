@@ -12,6 +12,7 @@ def index(request):
 def login(request, authentication_form=Login):
     form = Login(request.POST or None)
     if form.is_valid():
+        # TODO - Finish implementing login and confirm it checks the proper user table for user info
         print("User is a valid user")
     template = 'login.html'
     context = {
@@ -27,10 +28,15 @@ def register(request, authentication_form=Register):
         #   Display success message
         messages.success(request, "Successfully registered")
         print("user is registered")
+        #   TODO - Redirect properly to login after registration is successful
         return HttpResponseRedirect('login')
 
     context = {
         'form': form,
     }
-    messages.error(request, 'Not successfully created')
+    messages.error(request, 'Registration failed. Please try again at another time')
     return render(request, 'registration/register.html', context)
+
+def logoff():
+    #   TODO - inherit django logoff form and logic
+    return
