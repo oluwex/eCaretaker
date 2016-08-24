@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .models import Users
+from .models import RealUsers, User
 from eCaretakerLocations.models import House
 
 
@@ -14,13 +14,9 @@ class Login(AuthenticationForm):
 
 class Register(UserCreationForm):
     class Meta:
-        model = Users
+        model = RealUsers
         fields = [
-            'username',
-            'last_name',
-            'first_name',
             'middle_name',
-            'email',
             'phone_No',
             'gender',
             'address',
@@ -28,3 +24,12 @@ class Register(UserCreationForm):
             'role',
         ]
 
+class Register2(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'last_name',
+            'first_name',
+            'email',
+        ]
