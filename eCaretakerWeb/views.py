@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from eCaretaker.auth import UserBackend as check
 # from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
-from .forms import Login, Register, Register2
+from .forms import Login, Register
 
 # Create your views here.
 
@@ -31,14 +31,12 @@ def loguserin(request, authentication_form=Login):
     return render(request, 'account/login.html', context)
 
 
-def register(request, authentication_form=(Register,Register2)):
-    form = authentication_form[0](request.POST or None)
-    form2 = authentication_form[1](request.POST or None)
-    if form.is_valid() and form2.is_valid():
+def register(request, authentication_form=Register):
+    form = authentication_form(request.POST or None)
+
+    if form.is_valid():
         instance = form.save(commit=False)
-        instance2 = form2.save(commit=False)
         instance.save()
-        instance2.save()
         #   Display success message
         messages.success(request, "Successfully registered")
         print("user is registered")
@@ -46,7 +44,6 @@ def register(request, authentication_form=(Register,Register2)):
 
     context = {
         'form': form,
-        'form2': Register2,
     }
     messages.error(request, 'Registration failed. Please try again at another time')
     return render(request, 'account/register.html', context)
