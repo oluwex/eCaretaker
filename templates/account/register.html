@@ -2,16 +2,25 @@
 
 {% block head_title %} Register - {{ block.super }} {% endblock %}}
 
-<div class="messages">
-    {% include "message_display.html" %}
-</div>
-
 {% block content%}
 <form action='' method="post">{% csrf_token%}
-    {{ form2.as_p }}
-    <div class="hidden" id="form2">
+    <div class="form-row" id="form">
         {{ form.as_p }}
+        <input type="button" value="Next" id="next"/>
+    </div>
+    <div class="form-row" id="form2">
+        {{ form2.as_p }}
         <input value="Submit" type="submit"/>
     </div>
 </form>
+{#    <script>#}
+{#    $(document).ready(function () {#}
+{#        $("#form2").hide();#}
+{#        $("#next").click(function () {#}
+{#            $("#form").hide();#}
+{#            $("#form2").show();#}
+{#            $("#form2").removeAttr("hidden");#}
+{#        });#}
+{#    });#}
+{#    </script>#}
 {% endblock %}

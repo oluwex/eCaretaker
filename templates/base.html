@@ -1,12 +1,22 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load staticfiles %}
-    <script src="{% static 'js/jquery-3.1.0.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    {#    stylesheet reference#}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}"/>
     <meta charset="UTF-8">
     <title>{% block head_title %}eCaretaker{% endblock head_title%}</title>
 </head>
 <body>
+<div class="messages">
+    {% include "message_display.html" %}
+</div>
 {% block content%}
 {% endblock %}
 </body>
