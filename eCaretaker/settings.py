@@ -31,15 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'eCaretakerWeb',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'eCaretakerWeb',
     'eCaretakerLocations',
     'complaints',
+    'accounts',
 ]
 
 MIDDLEWARE_CLASSES = [

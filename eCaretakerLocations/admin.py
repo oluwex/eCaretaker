@@ -40,6 +40,6 @@ class StateModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Street, StreetModelAdmin)
-admin.site.register(State, StateModelAdmin)
-admin.site.register(LGA, LGAModelAdmin)
 admin.site.register(City, CityModelAdmin)
+admin.site.register(LGA, LGAModelAdmin)
+admin.site.register(State, StateModelAdmin)
