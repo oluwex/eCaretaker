@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block loginPartial %}
+    <ul>
+    <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
+    <li><a href="{% url 'accounts:logoff' %}">Logout</a></li>
+    </ul>
+{% endblock %}
+{% block content %}
+
+{% endblock %}

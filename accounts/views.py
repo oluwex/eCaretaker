@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from .forms import LoginForm, Register, Register2
@@ -13,7 +13,6 @@ def index(request):
 
 
 def loguserin(request):
-    print("pressed")
     form = LoginForm(data=request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")#request.POST.get('username', False)
@@ -22,7 +21,8 @@ def loguserin(request):
         if user is not None:
             login(request, user)
             print(request.user.is_authenticated())
-            return HttpResponseRedirect("/eCaretaker/")
+            # return HttpResponseRedirect("eCaretaker:index")
+            return redirect('/eCaretaker')
     context = {
         'form': form
     }
@@ -53,4 +53,9 @@ def register(request, authentication_form=(Register, Register2)):
 
 def logoff(request):
     logout(request)
-    return HttpResponseRedirect('account/login/')
+    messages.success(request, "You have successfully log out")
+    return HttpResponseRedirect('/login/')
+
+
+def profile(request):
+    return render(request, 'account/profile.html', {'user': request.user})

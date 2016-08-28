@@ -3,5 +3,5 @@ from django.conf.urls import url
 from .views import index
 
 urlpatterns = [
-    url(r'^eCaretaker/', index, name='Home'),
+    url(r'^$', index, name='index'),
 ]
