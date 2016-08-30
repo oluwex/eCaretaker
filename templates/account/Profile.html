@@ -3,5 +3,5 @@
 {% block head_title %} {{ user.username }} - {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-    {{ user.username }}
+    {{ user.realusers.get_full_name }}
 {% endblock %}

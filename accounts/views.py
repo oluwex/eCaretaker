@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
 from .forms import LoginForm, Register, Register2
+from .models import RealUsers
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -58,4 +60,4 @@ def logoff(request):
 
 
 def profile(request):
-    return render(request, 'account/profile.html', {'user': request.user})
+    return render(request, 'account/profile.html', {'user': User.objects.get_by_natural_key(request.user.username)})
