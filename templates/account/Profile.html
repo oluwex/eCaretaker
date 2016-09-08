@@ -1,7 +1,73 @@
 {% extends '_loginPartial.html' %}
 
-{% block head_title %} {{ user.username }} - {{ block.super }} {% endblock head_title %}
+{% block head_title %} {{ username }} - {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-    {{ user.realusers.get_full_name }}
+    <h3>{{ full_name }}</h3>
+    <hr/>
+    <form action="" method="post">{% csrf_token %}
+        <div class="form-row field-username">
+            {{ formset_user.username.errors }}
+            <label for="{{ formset_user.username.id_for_label }}" class="required">Username:</label>
+            {{ formset_user.username }}
+            <p class="help-block">{{ formset_user.username.help_text }}</p>
+        </div>
+        <div class="form-row">
+            {{ formset_user.last_name.errors }}
+                <label for="{{ formset_user.last_name.id_for_label }}" >Last Name:</label>
+            {{ formset_user.last_name }}
+            {{ formset_user.last_name.help_text }}
+        </div>
+        <div class="row form-group">
+            <div class="col-md-3">
+                {{ formset_user.first_name.errors }}
+                <label for="{{ formset_user.first_name.id_for_label }}" >First Name:</label>
+                {{ formset_user.first_name }}
+                {{ formset_user.first_name.help_text }}
+            </div>
+            <div class="col-md-3">
+                {{ formset_real.middle_name.errors }}
+                <label for="{{ formset_real.middle_name.id_for_label }}">Middle Name:</label>
+                {{ formset_real.middle_name }}
+                {{ formset_real.middle_name.help_text }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ formset_user.email.errors }}
+            <label for="{{ formset_user.email.id_for_label }}" >Email:</label>
+            {{ formset_user.email }}
+            {{ formset_user.email.help_text }}
+        </div>
+        <div class="form-row">
+            {{ formset_real.address.errors }}
+            <label for="{{ formset_address.address.id_for_label }}" >Address:</label>
+            {{ formset_real.address }}
+            {{ formset_real.address.help_text }}
+        </div>
+        <div class="form-row">
+            {{ formset_real.alternate_address.errors }}
+            <label for="{{ formset_real.alternate_address.id_for_label }}" >Alternate Address:</label>
+            {{ formset_real.alternate_address }}
+            {{ formset_real.alternate_address.help_text }}
+        </div>
+        <div class="form-row">
+            {{ formset_real.phone_No.errors }}
+            <label for="{{ formset_real.phone_no.id_for_label }}" >Phone Number:</label>
+            {{ formset_real.phone_No }}
+            {{ formset_real.phone_No.help_text }}
+        </div>
+        <div class="form-row">
+            {{ formset_real.gender.errors }}
+            <label for="{{ formset_real.gender.id_for_label }}" >Gender:</label>
+            {{ formset_real.gender }}
+            <p class="help-block">{{ formset_real.gender.help_text }}</p>
+        </div>
+        <div class="form-row">
+            {{ formset_real.role.errors }}
+            <label for="{{ formset_real.role.id_for_label }}" >Role:</label>
+            {{ formset_real.role }}
+            <p class="help-block">{{ formset_real.role.help_text }}</p>
+        </div>
+    <input type="submit" value="Update Profile" aria-pressed="true">
+    </form>
 {% endblock %}

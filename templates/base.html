@@ -14,11 +14,12 @@
     <title>{% block head_title %}eCaretaker{% endblock head_title%}</title>
 </head>
 <body>
+
+{% block loginPartial %}
+{% endblock %}
 <div class="messages">
     {% include "message_display.html" %}
 </div>
-{% block loginPartial %}
-{% endblock %}
 {% block content%}
 {% endblock %}
 </body>

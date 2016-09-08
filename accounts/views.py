@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
-from .forms import LoginForm, Register, Register2
+from .forms import LoginForm, Register, Register2, Edit
 from .models import RealUsers
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
 
 # Create your views here.
 
@@ -22,7 +23,6 @@ def loguserin(request):
         user = authenticate(username=username, password = password)
         if user is not None:
             login(request, user)
-            print(request.user.is_authenticated())
             # return HttpResponseRedirect("eCaretaker:index")
             return redirect('/eCaretaker')
     context = {
@@ -60,4 +60,26 @@ def logoff(request):
 
 
 def profile(request):
-    return render(request, 'account/profile.html', {'user': User.objects.get_by_natural_key(request.user.username)})
+    user = User.objects.get(username=request.user.username)
+    # form = inlineformset_factory(User, RealUsers, exclude=['updated'])
+    if request.method == "POST":
+        formset_user = Edit(request.POST, instance=user)
+        formset_real = Register2(request.POST, instance=user.realusers)
+        if formset_user.is_valid() and formset_real.is_valid():
+            formset_user.save(commit=False)
+            formset_real.save(commit=False)
+            formset_user.save()
+            formset_real.save()
+            messages.success(request, "Your profile has been updated successfully")
+            return HttpResponseRedirect("/eCaretaker/")
+    else:
+        formset_user = Edit(instance=user)
+        formset_real = Register2(instance=user.realusers)
+
+    context = {
+        'formset_user': formset_user,
+        'formset_real': formset_real,
+        'username': user.username,
+        'full_name': user.realusers.get_full_name()
+    }
+    return render(request, 'account/profile.html', context)

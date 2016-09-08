@@ -5,6 +5,18 @@
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+input, textarea{border-radius:5px;
+      }
+
+#navbar{width:100%;
+    background-color:dodgerblue;
+    color:#fff;
+  font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+text-decoration: none;}
+
+/***/
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -12,6 +24,7 @@ html {
 }
 body {
   margin: 0;
+  padding-left: 30px;
 }
 article,
 aside,

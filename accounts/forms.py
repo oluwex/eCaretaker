@@ -34,3 +34,26 @@ class Register2(forms.ModelForm):
             'alternate_address',
             'role',
         ]
+
+class Edit(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'last_name',
+            'first_name',
+            'email',
+            # 'middle_name',
+            # 'gender',
+            # 'address',
+            # 'phone_No',
+            # 'alternate_address',
+            # 'role',
+        ]
+
+
+class ProfileForm(forms.Form):
+    username = forms.CharField(max_length=10)
+    last_name = forms.CharField(max_length=20)
+    first_name = forms.CharField(max_length=20)
+    middle_name = forms.CharField(max_length=20)

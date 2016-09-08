@@ -9,8 +9,10 @@
         <input type="button" value="Next" id="next"/>
     </div>
     <div class="form-row" id="form2">
+        <form action="" method="post">{% csrf_token %}
         {{ form2.as_p }}
         <input value="Submit" type="submit"/>
+            </form>
     </div>
 </form>
 {#    <script>#}
