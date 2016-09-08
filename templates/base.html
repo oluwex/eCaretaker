@@ -9,18 +9,39 @@
     {#    stylesheet reference#}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}"/>
+{#    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}"/>#}
     <meta charset="UTF-8">
     <title>{% block head_title %}eCaretaker{% endblock head_title%}</title>
 </head>
 <body>
-
-{% block loginPartial %}
-{% endblock %}
-<div class="messages">
-    {% include "message_display.html" %}
-</div>
-{% block content%}
-{% endblock %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{% url "eCaretaker:index" %}" class="navbar-brand">eCaretaker</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                {% block loginPartial %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="messages">
+        {% include "message_display.html" %}
+    </div>
+    <div class="container body-content">
+        {% block content%}
+        {% endblock %}
+        <hr/>
+        <footer>
+            <p>
+                &copy;
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
