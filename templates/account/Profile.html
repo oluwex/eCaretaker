@@ -4,7 +4,7 @@
 
 {% block content %}
     <h3>{{ full_name }}</h3>
-    <hr/>
+    <hr />
     <form action="" method="post">{% csrf_token %}
         <div class="form-row field-username">
             {{ formset_user.username.errors }}
