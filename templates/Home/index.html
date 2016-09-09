@@ -1,7 +1,7 @@
-{% extends '_loginPartial.html' %}
+{% extends 'base.html' %}
 
 {% block head_title %}Home - {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-    <h1>Welcome</h1>
+    <h1>Welcome, {{ name }}</h1>
 {% endblock %}

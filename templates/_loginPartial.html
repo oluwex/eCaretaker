@@ -1,10 +1,14 @@
-{% extends 'base.html' %}
-{% block loginPartial %}
-    <ul class="nav navbar-nav">
+{#{% extends 'base.html' %}#}
+{#{% block loginPartial %}#}
+{% if user.is_authenticated %}
+    <ul class="nav navbar-nav navbar-right">
     <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
     <li><a href="{% url 'accounts:logoff' %}">Logout</a></li>
     </ul>
-{% endblock %}
-{% block content %}
-
-{% endblock %}
+{% else %}
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+    <li><a href="{% url 'accounts:register' %}">Register</a></li>
+    </ul>
+{% endif %}
+{#{% endblock %}#}

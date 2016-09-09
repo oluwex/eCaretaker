@@ -3,9 +3,20 @@
 {% block head_title %} Log In - {{ block.super }} {% endblock%}
 
 {% block content%}
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginform">
 
-<form method="POST" action="">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login" />
-</form>
+                <form method="POST" action="">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Login" />
+                </form>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
 {% endblock %}

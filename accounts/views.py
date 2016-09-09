@@ -11,7 +11,6 @@ from django.forms import inlineformset_factory
 
 def index(request):
     template = 'index.html'
-    # context = {}
     return render(request, template)
 
 

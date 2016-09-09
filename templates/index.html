@@ -3,14 +3,10 @@
 {% block head_title %}{{ block.super }}{% endblock %}
 
 {% block content %}
-
+    <div class="jumbotron">
     <h1>Welcome to eCaretaker</h1>
-<ul>
-    <li><a href="{% url 'accounts:login' %}">Login</a></li>
-    <li><a href="{% url 'accounts:register' %}">Register</a> </li>
-</ul>
     <p>
         &emsp;Your Virtual Tenant Manager!
     </p>
-
+    </div>
 {% endblock %}

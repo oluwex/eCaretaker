@@ -6,8 +6,7 @@ from django.contrib import messages
 
 def index(request):
     template = 'home/index.html'
-    print(request.user.is_authenticated())
     if not request.user.is_authenticated():
         messages.error(request, 'Please login to continue')
         return redirect('/login')
-    return render(request, template)
+    return render(request, template, {'name': request.user.username })
