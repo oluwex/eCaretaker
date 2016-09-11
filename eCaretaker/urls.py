@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('accounts.urls', namespace='accounts')),
     url(r'^eCaretaker/', include('eCaretakerWeb.urls', namespace='eCaretaker')),
+    url(r'^eCaretaker/Houses', include('eCaretakerLocations.urls', namespace='locations'))
 ]
 
 if settings.DEBUG:

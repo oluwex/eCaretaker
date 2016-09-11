@@ -51,18 +51,22 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/">
                     	<h1><img src="{% static 'images/logo.png' %}" alt="logo"></h1>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="{% url 'eCaretaker:index' %}">Home</a></li>
                         <li class="dropdown"><a href="#">Houses<i class="fa fa-angle-down"></i></a>
                             <ul role="menu" class="sub-menu">
-
+                                <li><a href="/">Duplex</a></li>
+                                <li><a href="/">Bungalow</a></li>
+                                <li><a href="/">Flat</a></li>
+                                <li><a href="/">Face Me I Face you</a></li>
                             </ul>
                         </li>
+                        <li><a href="{% url 'locations:index' %}">Locations</a></li>
                         {% include '_loginPartial.html' %}
 {#                        <li><a href="shortcodes.html ">Shortcodes</a></li>#}
                     </ul>
@@ -81,15 +85,21 @@
     {% block slider %}
     {% endblock %}
         <div class="messages">
-            {% include "message_display.html" %}
-        </div>
+                {% include "message_display.html" %}
+            </div>
         {% block content%}
+
         {% endblock %}
-    <hr/>
-        <footer>
-            <p>
-                &copy;
-            </p>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center bottom-separator">
+                        <img src="{% static 'images/home/under.png' %}" class="img-responsive inline" alt="">
+                    </div>
+                    {% block footer %}
+                    {% endblock %}
+                </div>
+            </div>
         </footer>
 {##}
 {#    <script src="{% static 'js/jquery.min.js' %}"></script>#}
@@ -101,6 +111,8 @@
     <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
 
 </body>
 </html>

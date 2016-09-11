@@ -14,7 +14,7 @@
                         <p>
                             &emsp;Your Virtual Tenant Manager!
                         </p>
-                        <a href="{% url 'accounts:login' %}" class="btn btn-common">SIGN UP</a>
+                        <a href="{% url 'accounts:register' %}" class="btn btn-common">SIGN UP</a>
                     </div>
                     <img src="{% static 'images/home/slider/hill.png' %}" class="slider-hill" alt="slider image">
                     <img src="{% static 'images/home/slider/house.png' %}" class="slider-house" alt="slider image">
@@ -26,6 +26,7 @@
         </div>
         <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>
     </section>
+{% endblock %}
 
 {#    <section id="services">#}
 {#        <div class="container">#}
@@ -61,7 +62,7 @@
 {#        </div>#}
 {#    </section>#}
     <!--/#action-->
-
+{% block content %}
     <section id="features">
         <div class="container">
             <div class="row">
@@ -71,7 +72,7 @@
                     </div>
                     <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
                         <h2>Over a thousand customer strong</h2>
-{#                    <p>A very robust, user-friendly &amp; interactive site.</p>
+                        <p>A very robust, user-friendly &amp; interactive site.</p>
                     </div>
                 </div>
                 <div class="single-features">
@@ -80,7 +81,7 @@
                         <P>Our customer base can attest to this.</P>
                     </div>
                     <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <img src="{% static 'images/home/image2' %}" class="img-responsive" alt="">
+                        <img src="{% static 'images/home/image2.png' %}" class="img-responsive" alt="">
                     </div>
                 </div>
             </div>
@@ -88,38 +89,112 @@
     </section>
      <!--/#features-->
 
-    <section id="clients">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="clients text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-                        <p><img src="images/home/clients.png" class="img-responsive" alt=""></p>
-                        <h1 class="title">Happy Clients</h1>
-                        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud </p>
-                    </div>
-                    <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client1.png" class="img-responsive" alt=""></a>
-                        </div>
-                        <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client2.png" class="img-responsive" alt=""></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client3.png" class="img-responsive" alt=""></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client4.png" class="img-responsive" alt=""></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client5.png" class="img-responsive" alt=""></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/client6.png" class="img-responsive" alt=""></a>
-                        </div>
+{#    <section id="clients">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-12">#}
+{#                    <div class="clients text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">#}
+{#                        <p><img src="images/home/clients.png" class="img-responsive" alt=""></p>#}
+{#                        <h1 class="title">Happy Clients</h1>#}
+{#                        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis nostrud </p>#}
+{#                    </div>#}
+{#                    <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">#}
+{#                        <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client1.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                        <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client2.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                         <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client3.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                         <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client4.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                         <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client5.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                         <div class="col-xs-3 col-sm-2">#}
+{#                            <a href="#"><img src="images/home/client6.png" class="img-responsive" alt=""></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#     </section>#}
+    {% endblock %}
+
+    {% block footer %}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-12 text-center bottom-separator">#}
+{#                    <img src="{% static 'images/home/under.png' %}" class="img-responsive inline" alt="">#}
+{#                </div>#}
+{#                <div class="col-md-4 col-sm-6">#}
+{#                    <div class="testimonial bottom">#}
+{#                        <h2>Testimonial</h2>#}
+{#                        <div class="media">#}
+{#                            <div class="pull-left">#}
+{#                                <a href="#"><img src="{% static 'images/home/profile1.png' %}" alt=""></a>#}
+{#                            </div>#}
+{#                            <div class="media-body">#}
+{#                                <blockquote>Nisi commodo bresaola, leberkas venison eiusmod bacon occaecat labore tail.</blockquote>#}
+{#                                <h3><a href="#">- Jhon Kalis</a></h3>#}
+{#                            </div>#}
+{#                         </div>#}
+{#                        <div class="media">#}
+{#                            <div class="pull-left">#}
+{#                                <a href="#"><img src="{% static 'images/home/profile2.png' %}" alt=""></a>#}
+{#                            </div>#}
+{#                            <div class="media-body">#}
+{#                                <blockquote>Capicola nisi flank sed minim sunt aliqua rump pancetta leberkas venison eiusmod.</blockquote>#}
+{#                                <h3><a href="">- Abraham Josef</a></h3>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+                <div class="col-md-4 col-sm-7">
+                    <div class="contact-info bottom">
+                        <h2>Contacts</h2>
+                        <address>
+                        E-mail: <a href="mailto:someone@example.com">email@email.com</a> <br>
+                        Phone: +1 (123) 456 7890 <br>
+                        Fax: +1 (123) 456 7891 <br>
+                        </address>
+
+                        <h2>Address</h2>
+                        <address>
+                        Unit C2, St.Vincent's Trading Est., <br>
+                        Feeder Road, <br>
+                        Bristol, BS2 0UY <br>
+                        United Kingdom <br>
+                        </address>
                     </div>
                 </div>
-            </div>
-        </div>
-     </section>
-
+                <div class="col-md-4 col-sm-12">
+                    <div class="contact-form bottom">
+                        <h2>Send a message</h2>
+                        <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email Id">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; Oluwex 2016. All Rights Reserved.</p>
+                    </div>
+                </div>
+{#        </div>#}
+{#        </div>#}
 {% endblock %}
