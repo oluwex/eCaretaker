@@ -22,8 +22,8 @@ class RealUsers(models.Model):
     alternate_address = models.TextField(_('Alternate Address'), max_length=80, blank=80)
     phone_No = models.CharField(_('Phone Number'), max_length=20, blank=True,
                                 validators=[validators.RegexValidator(
-                                    r'(^[\d]{11,20})',
-                                    'Phone Number must only consist of numbers and must be eleven or greater in length'
+                                    r'(^[\d]{5,20})',
+                                    'Phone Number must only consist of numbers and must be five or greater in length'
                                 )
                                 ], unique=True, error_messages={
             'unique': 'A user with that phone number already exists'

@@ -11,6 +11,8 @@ from django.forms import inlineformset_factory
 
 def index(request):
     template = 'index.html'
+    if request.user.is_authenticated():
+        return redirect('/eCaretaker')
     return render(request, template)
 
 
