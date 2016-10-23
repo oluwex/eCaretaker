@@ -57,7 +57,7 @@ def register(request, authentication_form=(Register, Register2)):
 def logoff(request):
     logout(request)
     messages.success(request, "You have successfully log out")
-    return HttpResponseRedirect('/login/')
+    return HttpResponseRedirect('/')
 
 
 def profile(request):

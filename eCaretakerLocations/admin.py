@@ -3,6 +3,16 @@ from .models import LGA, State, City, Street, House
 
 # Register your models here.
 
+
+class HouseModelAdmin(admin.ModelAdmin):
+    list_display = ['name', 'house_no', 'street', 'city', 'local_government', 'state', 'owner']
+    list_display_links = ['name']
+    list_filter = ['city', 'state',]
+    search_fields = ['name', 'street']
+
+    class Meta:
+        model = House
+
 class StreetModelAdmin(admin.ModelAdmin):
     list_display = ['name', 'city', 'local_government', 'state']
     list_display_links = ['name']
@@ -39,6 +49,7 @@ class StateModelAdmin(admin.ModelAdmin):
         model = State
 
 
+admin.site.register(House, HouseModelAdmin)
 admin.site.register(Street, StreetModelAdmin)
 admin.site.register(City, CityModelAdmin)
 admin.site.register(LGA, LGAModelAdmin)

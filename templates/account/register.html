@@ -3,17 +3,19 @@
 {% block head_title %} Register - {{ block.super }} {% endblock %}}
 
 {% block content%}
+    <hr/>
 <form action='' method="post">{% csrf_token%}
-    <div class="form-row form-group form" id="form">
-        {{ form.as_p }}
-    </div>
-    <div class="form-inline" id="form2">
-        <form action="" method="post">{% csrf_token %}
-        {{ form2.as_p }}
-        <input value="Submit" type="submit"/>
-            </form>
+    <div class="container">
+        <div class="form-row form-group form" id="form">
+            {{ form.as_p }}
+        </div>
+        <div class="form-inline" id="form2">
+            {{ form2.as_p }}
+        </div>
+        <input value="Submit" class="btn btn-default" type="submit"/>
     </div>
 </form>
+    <hr/>
 {#    <script>#}
 {#    $(document).ready(function () {#}
 {#        $("#form2").hide();#}

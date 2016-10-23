@@ -3,14 +3,16 @@
 {% block head_title %} {{ username }} | {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-    <h3>{{ full_name }}</h3>
-    <hr />
+        <hr />
+    <div class="container">
+    <h3>{{ full_name.upper }}</h3>
+        <br/>
     <form action="" method="post">{% csrf_token %}
         <div class="form-row field-username">
             {{ formset_user.username.errors }}
             <label for="{{ formset_user.username.id_for_label }}" class="required">Username:</label>
             {{ formset_user.username }}
-            <p class="help-block">{{ formset_user.username.help_text }}</p>
+            <p class="help-text">{{ formset_user.username.help_text }}</p>
         </div>
         <div class="form-row">
             {{ formset_user.last_name.errors }}
@@ -70,4 +72,6 @@
         </div>
     <input type="submit" value="Update Profile" aria-pressed="true">
     </form>
+    <hr/>
+    </div>
 {% endblock %}

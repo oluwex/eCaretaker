@@ -3,5 +3,6 @@
 {% block head_title %}Home - {{ block.super }} {% endblock head_title %}
 
 {% block content %}
-    <h1>Welcome, {{ name }}</h1>
+    <h1>Welcome, {{ name.upper }}</h1>
+    {#    Todo: Populate view with information or put dashboard #}
 {% endblock %}
