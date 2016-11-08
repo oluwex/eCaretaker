@@ -9,7 +9,8 @@ from .models import RealUsers
 class RealUserInline(admin.StackedInline):
     model = RealUsers
     can_delete = False
-    verbose_name_plural = 'users'
+    # verbose_name = 'Additional user information'
+    verbose_name_plural = 'Additional user information'
 
 class UserAdmin(BaseUserAdmin):
     inlines = (RealUserInline,)

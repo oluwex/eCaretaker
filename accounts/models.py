@@ -50,6 +50,9 @@ class RealUsers(models.Model):
 
     REQUIRED_FIELDS = ['email']
 
+    def __str__(self):
+        return self.user.username
+
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
