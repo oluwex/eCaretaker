@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'eCaretakerWeb',
-    'eCaretakerLocations',
-    'complaints',
     'accounts',
+    'eCaretakerWeb',
+    'locations',
+    'complaints',
+    'crispy_forms'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,6 +56,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'eCaretaker.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 TEMPLATES = [
     {

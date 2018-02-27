@@ -1,13 +1,18 @@
+from django.core.urlresolvers import reverse
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+# from django.contrib.auth.models import User
 from django.core import validators
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
+def upload_location(instance, filename):
+    return "%s-%s" % (instance.id, filename)
+
 
 class RealUsers(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     GENDER_MALE = 'male'
     GENDER_FEMALE = 'female'
@@ -35,6 +40,9 @@ class RealUsers(models.Model):
         max_length=6,
         choices=GENDER_CHOICES,
     )
+    profile_picture = models.ImageField(height_field='height_field', width_field='width_field')
+    height_field = models.IntegerField(default=0)
+    width_field = models.IntegerField(default=0)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     role = models.CharField(
         _('Role'),
@@ -63,3 +71,6 @@ class RealUsers(models.Model):
     def get_short_name(self):
         "Returns the short name for the user."
         return self.first_name
+
+    def get_absolute_url(self):
+        return reverse('accounts:profile', kwargs={'username': self.user.username })

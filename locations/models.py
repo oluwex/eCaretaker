@@ -1,5 +1,5 @@
 from django.db import models
-from eCaretakerWeb.models import Users
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -31,7 +31,7 @@ class House(models.Model):
 
     state = models.ForeignKey('State', models.CASCADE, verbose_name='State', blank=True, null=True)
 
-    owner = models.ForeignKey(Users, models.CASCADE, verbose_name='owner')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE, verbose_name='owner')
 
     class Meta:
         verbose_name_plural = _('Houses')

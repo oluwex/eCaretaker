@@ -17,12 +17,14 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
+from accounts.urls import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('accounts.urls', namespace='accounts')),
+    url(r'^$', index, name='index'),
+    url(r'^eCaretaker/accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^eCaretaker/', include('eCaretakerWeb.urls', namespace='eCaretaker')),
-    url(r'^eCaretaker/Locations', include('eCaretakerLocations.urls', namespace='locations'))
+    url(r'^eCaretaker/Locations', include('locations.urls', namespace='locations'))
 ]
 
 if settings.DEBUG:

@@ -2,18 +2,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="eCaretaker">
     <meta name="author" content="habeeb">
 
+    <title>{% block head_title %}eCaretaker{% endblock head_title%}</title>
+
     {#    stylesheet reference#}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
-	<link href="{% static 'css/main.css' %}" rel="stylesheet">
-	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/components.css' %}" rel="stylesheet">
+    <link href="{% static 'css/core.css' %}" rel="stylesheet">
+{#    <link href="{% static 'css/menu.css' %}" rel="stylesheet">#}
+    <link href="{% static 'css/pages.css' %}" rel="stylesheet">
+    <link href="{% static 'css/icons.css' %}" rel="stylesheet">
+
 
     <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
@@ -21,8 +29,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
 
-    <meta charset="UTF-8">
-    <title>{% block head_title %}eCaretaker{% endblock head_title%}</title>
 </head>
 <body>
     <header id="header">
@@ -55,22 +61,10 @@
                     	<h1><img src="{% static 'images/logo.png' %}" alt="logo"></h1>
                     </a>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="{% url 'eCaretaker:index' %}">Home</a></li>
-                        <li class="dropdown"><a href="#">Houses<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="#">Duplex</a></li>
-                                <li><a href="#">Bungalow</a></li>
-                                <li><a href="#">Flat</a></li>
-                                <li><a href="#">Face Me I Face you</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{% url 'locations:index' %}">Locations</a></li>
+
                         {% include '_loginPartial.html' %}
 {#                        <li><a href="shortcodes.html ">Shortcodes</a></li>#}
-                    </ul>
-                </div>
+
                 <div class="search">
                     <form role="form">
                         <i class="fa fa-search"></i>
@@ -91,17 +85,8 @@
 
         {% endblock %}
         <div class="row"></div>
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 text-center bottom-separator">
-                        <img src="{% static 'images/home/under.png' %}" class="img-responsive inline" alt="">
-                    </div>
                     {% block footer %}
                     {% endblock %}
-                </div>
-            </div>
-        </footer>
 {##}
 {#    <script src="{% static 'js/jquery.min.js' %}"></script>#}
 {#    <script src="{% static 'js/jquery.validate.js' %}"></script>#}
@@ -112,6 +97,7 @@
     <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/modernizr.js' %}"></script>
     {% block scripts %}
     {% endblock %}
 

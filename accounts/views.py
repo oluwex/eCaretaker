@@ -1,10 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate
-from .forms import LoginForm, Register, Register2, Edit
-from .models import RealUsers
-from django.contrib.auth.models import User
-from django.forms import inlineformset_factory
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import Register, Register2, Edit
+# from django.forms import inlineformset_factory
 
 # Create your views here.
 
@@ -17,11 +17,11 @@ def index(request):
 
 
 def loguserin(request):
-    form = LoginForm(data=request.POST or None)
+    form = AuthenticationForm(data=request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")#request.POST.get('username', False)
         password = form.cleaned_data.get("password")#request.POST.get('password', False)
-        user = authenticate(username=username, password = password)
+        user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             # return HttpResponseRedirect("eCaretaker:index")
@@ -29,19 +29,15 @@ def loguserin(request):
     context = {
         'form': form
     }
-    return render(request, 'account/login.html', context)
+    return render(request, 'accounts/login.html', context)
 
 
-def register(request, authentication_form=(Register, Register2)):
-    form = authentication_form[0](request.POST or None)
-    form2 = authentication_form[1](request.POST or None)
+def register(request, authentication_form=Register):
+    form = authentication_form(request.POST or None)
 
-    if form.is_valid() and form2.is_valid:
+    if form.is_valid():
         instance = form.save(commit=False)
-        instance2 = form2.save(commit=False)
         instance.save()
-        instance2.user = instance
-        instance2.save()
         #   Display success message
         messages.success(request, "Successfully registered")
         print("user is registered")
@@ -49,9 +45,29 @@ def register(request, authentication_form=(Register, Register2)):
 
     context = {
         'form': form,
-        'form2': form2,
     }
-    return render(request, 'account/register.html', context)
+    return render(request, 'accounts/register.html', context)
+
+# def register(request, authentication_form=(Register, Register2)):
+#     form = authentication_form[0](request.POST or None)
+#     form2 = authentication_form[1](request.POST or None)
+#
+#     if form.is_valid() and form2.is_valid:
+#         instance = form.save(commit=False)
+#         instance2 = form2.save(commit=False)
+#         instance.save()
+#         instance2.user = instance
+#         instance2.save()
+#         #   Display success message
+#         messages.success(request, "Successfully registered")
+#         print("user is registered")
+#         return HttpResponseRedirect('/login/')
+#
+#     context = {
+#         'form': form,
+#         'form2': form2,
+#     }
+#     return render(request, 'accounts/register.html', context)
 
 
 def logoff(request):
@@ -60,8 +76,8 @@ def logoff(request):
     return HttpResponseRedirect('/')
 
 
-def profile(request):
-    user = User.objects.get(username=request.user.username)
+def profile(request, username=None):
+    user = get_object_or_404(settings.AUTH_USER_MODEL, username=username)
     # form = inlineformset_factory(User, RealUsers, exclude=['updated'])
     if request.method == "POST":
         formset_user = Edit(request.POST, instance=user)
@@ -83,4 +99,4 @@ def profile(request):
         'username': user.username,
         'full_name': user.realusers.get_full_name()
     }
-    return render(request, 'account/profile.html', context)
+    return render(request, 'accounts/profile.html', context)
